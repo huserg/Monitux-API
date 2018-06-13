@@ -26,9 +26,9 @@ exports.processesController = {
             for (let i = 0; i < output.length; i++) {
                 C.const.MYSQL.query("CALL `save_services`('"+output[i][0][1]+"', '"+output[i][1][1]+"', '"+output[i][1][2]+"');", function (err, result) {
                     if (err) throw err;
-                    else console.log("DB Update : " + output[i][0][1]);
                 });
             }
+            console.log("Process list retrieved!");
         });
     }
 };
