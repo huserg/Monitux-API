@@ -1,0 +1,25 @@
+{
+  "requires": true,
+  "name": "MonituxAPI",
+  "author": "R-Men",
+  "version": "0.0.1",
+  "description": "API to Monitoring Linux Server in node.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.r-men.ch/rmen/MonituxAPI"
+  },
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://gitlab.r-men.ch/rmen/MonituxAPI/issues"
+  },
+  "homepage": "https://gitlab.r-men.ch/rmen/MonituxAPI#readme",
+  "main": "monitux-api.js",
+  "scripts": {
+    "start": "node monitux-api.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "jsonfile": "^4.0.0"
+  },
+  "devDependencies": {}
+}
