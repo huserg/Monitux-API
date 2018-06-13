@@ -7,7 +7,7 @@ exports.const = {
     MYSQL: db.createConnection({
         host: "localhost",
         user: "monitux",
-        password: "GhusMonierTux.93",
+        password:  Unluck Tu Monitwd,
         database: "monitux"
     }),
 
