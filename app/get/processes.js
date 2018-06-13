@@ -1,17 +1,24 @@
-const D = require('../controller/jsonController');
+const C = require('../../config/const');
 
-exports.processes = function (req, res) {
+exports.showServerProcessList = function (req, res) {
 
-    let json = D.json.getInfos();
-    let processNames = [];
-    for (let i = 0; i < json.length; i++)
-        if (json[i]["monitor"] === "true")
-            processNames.push(json[i]["name"]);
+    C.const.MYSQL.query("SELECT `name`, `load`, `status`, `monitoring` FROM services;", function (err, result) {
+        if (err) throw err;
+        let output = JSON.stringify(result);
 
-    let output = "";
-    for (let i = 0; i < processNames.length; i++)
-        output += processNames[i] + "\n";
+        res.end(output);
 
-    res.end(output);
+    });
 }
 
+
+exports.showMonitoredProcessList = function (req, res) {
+
+    C.const.MYSQL.query("SELECT `name`, `load`, `status`, `monitoring` FROM services WHERE `monitoring` = 1;", function (err, result) {
+        if (err) throw err;
+        let output = JSON.stringify(result);
+
+        res.end(output);
+
+    });
+}

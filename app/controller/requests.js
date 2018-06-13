@@ -1,8 +1,17 @@
 const GetProcesses = require('../get/processes');
+const PostMonitoring = require('../post/monitoring');
 
 exports.requests = {
 
-    getProcesses: function(req, res) {
-        GetProcesses.processes(req, res);
+    showMonitoredProcessList: function(req, res) {
+        GetProcesses.showMonitoredProcessList(req, res);
+    },
+
+    showServerProcessList: function (req, res) {
+        GetProcesses.showServerProcessList(req, res);
+    },
+
+    switchMonitoringStatus: function (req, res) {
+        PostMonitoring.switchMonitoringStatus(req, res);
     }
 }
