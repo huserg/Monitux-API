@@ -1,10 +1,5 @@
 CREATE DATABASE  IF NOT EXISTS `monitux` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `monitux`;
--- MySQL dump 10.13  Distrib 5.7.22, for Linux (x86_64)
---
--- Host: localhost    Database: monitux
--- ------------------------------------------------------
--- Server version	5.7.22-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -47,7 +42,7 @@ CREATE TABLE `services` (
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `save_services`(IN p_name VARCHAR(45), IN p_load VARCHAR(45), IN p_status VARCHAR(45))
+CREATE PROCEDURE `save_services`(IN p_name VARCHAR(45), IN p_load VARCHAR(45), IN p_status VARCHAR(45))
 BEGIN
 
 SET @v_count = 0;
@@ -80,7 +75,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `switchMonitoringStatus`(IN p_name VARCHAR(45))
+CREATE PROCEDURE `switchMonitoringStatus`(IN p_name VARCHAR(45))
 BEGIN
 SET @v_monit = 0;
 
