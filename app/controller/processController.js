@@ -3,7 +3,7 @@ const C = require('../../config/const');
 
 exports.processesController = {
 
-    retrieveList: function() {
+    retrieveList: function(timestamp) {
         exec('systemctl list-units --type=service --all', (err, stdout, stderr) => {
             if (err) {
                 // node couldn't execute the command
@@ -28,7 +28,8 @@ exports.processesController = {
                     if (err) throw err;
                 });
             }
-            console.log("Process list retrieved!");
+
+            console.log(timestamp + ": Process list retrieved!");
         });
     }
 };

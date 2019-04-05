@@ -8,7 +8,7 @@ It delivers a list of processes and their status in JSON. You can select them fo
 
 Create a database with the `database_creation_script.sql`
 
-Create the `config.js` file from `config.example.js`
+Create the `config/const.js` file from `config/const.example.js`
 
 Install npm dependencies
 
