@@ -14,3 +14,15 @@ Install npm dependencies
 
     npm install
     
+## TODO 
+
+### Secure API
+
+Implement a co mmand to generate an API KEY
+
+Store the key in a Config table in DB 
+
+Change requests by HTTPS Post request with key in header
+
+Check if key is valid
+
