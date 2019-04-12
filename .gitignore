@@ -2,3 +2,4 @@
 /node_modules
 Config/DatabaseManager.js
 .env
+*.deb

@@ -1,12 +1,17 @@
-require('dotenv').config();
+#!/usr/bin/env node
+
+let dotenv = require('dotenv');
 const express = require('express');
 const monitux = express();
-const C = require('./Database/DatabaseManager');
 const r = require('./Routes/Requests');
 const pC = require('./App/Controllers/ProcessesController');
 const AuthController = require('./App/Controllers/AuthorizationController');
 const cron = require('node-cron');
 
+// if run in .deb package
+dotenv.config({path:'app/.env'});
+// if run in local
+dotenv.config({ path: ".env" });
 
 
 monitux.use(express.json());        // to support JSON-encoded bodies

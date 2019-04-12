@@ -4,15 +4,13 @@ This is a Debian / Ubuntu node.JS API to monitor the processes that runs on your
 
 It delivers a list of processes and their status in JSON. You can select them for monitoring to have a smaller list of your preferred processes.
 
-## Installation 
+## Configuration
 
 Create a database with the `database_creation_script.sql`
 
 Install npm dependencies
 
     npm install
-   
-## Configuration
 
 Create the `.env` file from `.env.example`
 
@@ -22,10 +20,16 @@ Generate your api key by running the following command in your monitux directory
     
     monitux-api-cli generate-key
     
+## Installation
+
+Run the following command to create the `.deb` package
+
+    node-deb -- monitux-api.js monitux-api-cli.js .env Routes/ App/ Database/ LICENSE
+
+Install the app with 
+
+    sudo dpkg -i monitux-api_1.0.0_all.deb
+
 ## TODO 
 
-### Secure API
-
-Implement a command to generate an API KEY
-
-Store the key in the .env file 
+Make the monitux-api-cli working when deployed with `.deb` package
