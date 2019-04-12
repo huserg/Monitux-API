@@ -1,5 +1,5 @@
 const exec = require('child_process').exec;
-const C = require('../../config/const');
+const D = require('../../Database/DatabaseManager');
 
 exports.processesController = {
 
@@ -9,8 +9,6 @@ exports.processesController = {
                 // node couldn't execute the command
                 return;
             }
-
-            let processes = [];
 
             let output = stdout.split("\n");
             output = output.slice(1,output.length - 8);
@@ -24,7 +22,7 @@ exports.processesController = {
                     output[i][j] = output[i][j].split(/[ ]{1,}/);
 
             for (let i = 0; i < output.length; i++) {
-                C.const.MYSQL.query("CALL `save_services`('"+output[i][0][1]+"', '"+output[i][1][1]+"', '"+output[i][1][2]+"');", function (err, result) {
+                D.database.MYSQL.query("CALL `save_services`('"+output[i][0][1]+"', '"+output[i][1][1]+"', '"+output[i][1][2]+"');", function (err, result) {
                     if (err) throw err;
                 });
             }

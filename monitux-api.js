@@ -1,27 +1,54 @@
-let express = require('express');
-let app = express();
-let C = require('./config/const');
-let r = require('./app/controller/requests');
-let pC = require('./app/controller/processController');
-let cron = require('node-cron');
+require('dotenv').config();
+const express = require('express');
+const monitux = express();
+const C = require('./Database/DatabaseManager');
+const r = require('./Routes/Requests');
+const pC = require('./App/Controllers/ProcessesController');
+const AuthController = require('./App/Controllers/AuthorizationController');
+const cron = require('node-cron');
 
-app.use(express.json());        // to support JSON-encoded bodies
 
-app.get('/processes', (req, res) => r.requests.showMonitoredProcessList(req, res));
-app.get('/processes/all', (req, res) => r.requests.showServerProcessList(req, res));
-app.get('/processes/all/error', (req, res) => r.requests.showErrorProcessList(req, res));
-app.get('/processes/error', (req, res) => r.requests.showErrorMonitoredProcessList(req, res));
-app.post('/monitoring/switch', (req, res) => r.requests.switchMonitoringStatus(req, res));
 
-let server = app.listen(C.const.PORT, function () {
-    let port = server.address().port;
-    console.log("Monitux API is running on port " + port)
+monitux.use(express.json());        // to support JSON-encoded bodies
+
+monitux.use(function(req, res, next) {
+    let api_key = req.get('api_key');
+
+    if (api_key == null) {
+        console.log("Undefined Api Key");
+        return next(
+            res.end(JSON.stringify({'error': 'true', 'response': 'Undefined API Key!'}))
+        );
+    }
+    else if (!AuthController.authorizationController.checkApiKey(api_key)) {
+        console.log("Unauthorized Api Key : " + api_key);
+        return next(
+            res.end(JSON.stringify({'error': 'true', 'response': 'Unauthorized API Key!'}))
+        );
+    }
+    else {
+        return next();
+    }
 });
 
+// Server GET requests
+monitux.get('/processes', (req, res) => r.requests.showMonitoredProcessList(req, res));
+monitux.get('/processes/all', (req, res) => r.requests.showServerProcessList(req, res));
+monitux.get('/processes/all/error', (req, res) => r.requests.showErrorProcessList(req, res));
+monitux.get('/processes/error', (req, res) => r.requests.showErrorMonitoredProcessList(req, res));
+
+
+// Server POST requests
+monitux.post('/monitoring/switch', (req, res) => r.requests.switchMonitoringStatus(req, res));
+
+
+monitux.listen(process.env.APP_PORT, function () {
+    console.log("Monitux API is running on port " + process.env.APP_PORT)
+});
 
 cron.schedule('* * * * *', function() {
     pC.processesController.retrieveList(getCurrentTimestampForLogs());
-    }
+    }, true
 );
 
 function getCurrentTimestampForLogs(){

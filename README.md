@@ -8,21 +8,24 @@ It delivers a list of processes and their status in JSON. You can select them fo
 
 Create a database with the `database_creation_script.sql`
 
-Create the `config/const.js` file from `config/const.example.js`
-
 Install npm dependencies
 
     npm install
+   
+## Configuration
+
+Create the `.env` file from `.env.example`
+
+Configure your database credentials in the `.env` file
+
+Generate your api key by running the following command in your monitux directory:
+    
+    monitux-api-cli generate-key
     
 ## TODO 
 
 ### Secure API
 
-Implement a co mmand to generate an API KEY
+Implement a command to generate an API KEY
 
-Store the key in a Config table in DB 
-
-Change requests by HTTPS Post request with key in header
-
-Check if key is valid
-
+Store the key in the .env file 

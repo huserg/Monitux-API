@@ -1,5 +1,6 @@
-const GetProcesses = require('../get/processes');
-const PostMonitoring = require('../post/monitoring');
+const GetProcesses = require('../App/Http/Processes');
+const PostMonitoring = require('../App/Http/Monitoring');
+
 
 exports.requests = {
 
@@ -22,4 +23,4 @@ exports.requests = {
     switchMonitoringStatus: function (req, res) {
         PostMonitoring.switchMonitoringStatus(req, res);
     }
-}
+};
