@@ -35,6 +35,9 @@
   "node_deb": {
     "init": "systemd",
     "version": "1.0.0",
+    /*"templates": {
+      "postinst": "postinst-script"
+    },*/
     "entrypoints": {
       "cli": "monitux-api.cli.js",
       "daemon": "monitux-api.js"

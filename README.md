@@ -32,4 +32,5 @@ Install the app with
 
 ## TODO 
 
-Make the monitux-api-cli working when deployed with `.deb` package
+- Make the monitux-api-cli working when deployed with `.deb` package
+- Ask for ENV values when installing the .deb
